@@ -44,13 +44,21 @@ function Main:render()
 			}),
 			AddButton = Roact.createElement("TextButton", {
 				Text = "+50 монет",
-				Size = UDim2.new(0, 120, 0, 40),
+				Size = UDim2.new(0, 140, 0, 44),
 				Position = UDim2.new(0, 10, 0, 70),
-				BackgroundColor3 = Color3.fromRGB(100, 200, 100),
-				TextSize = 20,
-				["MouseButton1Click"] = function()
+				BackgroundColor3 = Color3.fromRGB(0, 200, 120),
+				TextSize = 22,
+				Font = Enum.Font.GothamBlack,
+				TextColor3 = Color3.fromRGB(255, 255, 255),
+				AutoButtonColor = true,
+				BorderSizePixel = 0,
+				[Roact.Event.MouseButton1Click] = function()
 					self:addCoins()
 				end,
+			}, {
+				UICorner = Roact.createElement("UICorner", {
+					CornerRadius = UDim.new(0, 10),
+				}),
 			}),
 			Shop = Roact.createElement(ShopComponent, {
 				wallet = self.wallet,
@@ -64,3 +72,5 @@ end
 
 -- Монтируем главный компонент в PlayerGui
 Roact.mount(Roact.createElement(Main), playerGui, "MainApp")
+
+return Main
